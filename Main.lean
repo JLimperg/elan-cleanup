@@ -34,7 +34,7 @@ def removeDirAllIfExists (fp : FilePath) : IO Unit :=
 
 def isIgnoredDirPath (fp : FilePath) : Bool :=
   if let some dirName := fp.fileName then
-    dirName.startsWith "."
+    dirName = "lake-packages" ∨ dirName.startsWith "."
   else
     false
 
