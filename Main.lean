@@ -149,5 +149,5 @@ def removeToolchainsExcept (elanRoot : FilePath) (keep : HashSet Toolchain) :
 def main : IO Unit := do
   let home ← getHomeDir
   let elanRoot ← getElanRoot
-  let toolchains ← getUsedToolchains home
-  removeToolchainsExcept elanRoot toolchains
+  let exceptToolchains := (← getUsedToolchains home).insert ⟨"stable"⟩ |>.insert ⟨"nigthly"⟩
+  removeToolchainsExcept elanRoot exceptToolchains
